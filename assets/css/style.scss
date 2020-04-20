@@ -1,0 +1,15 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+.page-header {
+  color: #ffff;
+  background-color: #A067AB;
+  background-image: linear-gradient(120deg, #F26BCE, #F2BBB6);
+}
+
+.main-content h1, .main-content h2, .main-content h3, .main-content h4, .main-content h5, .main-content h6 { margin-top: 2rem; margin-bottom: 0rem; font-weight: normal; color: #A067AB; }
+a { color: #F26BCE; text-decoration: none; }
+
+small { color: #AAAAAA;  }
