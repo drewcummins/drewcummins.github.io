@@ -52,3 +52,29 @@ I toiled with the way guesses overlapped, but didn't ever make any meaningful pr
 ### Geometric Approach
 
 If we instead think of each permutation as a point in space (the first dial moves us along the x-axis, the second dial along the y-axis and the third dial along the z-axis), we end up with an $$n\times n\times n$$ cube with some neat properties.
+
+Each guess is now a point, and each covered configuration is _collinear_ with that guess, and parallel to the x, y or z axes. Another way of thinking about it is that a guess sits at the intersection of 3 lines—each of those lines represents a broken dial: if we have dial 1 (x-axis) and 2 (y-axis) correct, then all configurations with those (x,y) coordinates are covered, regardless of dial 3 (z-axis). This gives us some spatial intuition for how to construct our list of guesses.
+
+This is probably easier to just look at:
+
+![Unlocking the toy lock](/assets/images/faulty-lock/toy-lock-geometry.png)
+
+First we've plotted all possible permutations of our toy lock, then in the middle diagram, we guess $$\combo{Goldenrod}{1}{1}{1}$$ and color each configuration this guess covers, and then finally guess $$\combo{DarkOrchid}{2}{2}{2}$$, at which point it should be apparent we've covered all possible configurations.
+
+It might not have been apparent before, but now we can easily find other pairs of guesses that also unlock our toy lock, e.g. $$\combo{Goldenrod}{1}{1}{2}$$ and $$\combo{DarkOrchid}{2}{2}{1}$$:
+
+![Another solution](/assets/images/faulty-lock/toy-lock-121.png)
+
+Unfortunately even this approach becomes on its own quickly unwieldy for larger $$n$$. Look at our first guess and a completed version for $$n=4$$:
+
+![Another solution](/assets/images/faulty-lock/cube-4-all.png)
+
+It's just not immediately apparent (or wasn't, to me) how we minimize overlap in our guesses. If we take a slightly different tack and constrain ourselves to a single (x,y) plane in space at a time, a few things jump out:
+
+![Another solution](/assets/images/faulty-lock/cube-4-xy-11-wide.png)
+
+First, this initial guess will cover $$2n-1$$ configurations, $$7$$ for this case of $$n=4$$. If this was the only guess we had on this plane, what is the _minimum_ number of guesses we'd have to make on other planes to cover each remaining configuration on this plane? $$9$$, because a guess on a different plane can only cover a single configuration on _this_ plane, and we have $$9$$ currently uncovered configurations.
+
+![Another solution](/assets/images/faulty-lock/cube-4-xy-22-wide.png)
+
+Next, our second guess covers at most $$2n-3$$ ($$5$$ in this case) new configurations. 
